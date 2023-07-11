@@ -1,16 +1,18 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+
 function Categoryform(props) {
 
     const [inputs ,setinputs] = useState({});
 
 
     const handleChange = (event)=> {
-        const name = event.target.name;
-        const value = event.target.value;
-        setinputs(values =>({...values , [name] :value}));
+
+
+        inputs [event.target.name] = event.target.value; 
         
+
         props.getvalue(inputs)
     }
     if(props.type == 'size'){
