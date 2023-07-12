@@ -10,7 +10,7 @@ function Addform() {
     const [active , setActive ] = useState("sizeForm");
     
     let [inputs ,setinputs] = useState({});
-
+    const [reomveProduct ,setRemoveProduct] = useState([]);
 
     function getvalue(value){
         inputs = {

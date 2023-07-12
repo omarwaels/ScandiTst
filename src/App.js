@@ -5,9 +5,10 @@ import Addform from "./components/addForm"
 import NavInsertPage from "./components/navInsertPage"
 import { Route,Routes } from 'react-router-dom';
 import Products from './components/products';
-
+import RemoveContextProvider from './Productcontext'
 function App() {
   return (
+    <RemoveContextProvider>
     <Routes>
       <Route path='/' element={<><NavBar/><Products/> </>}>
       </Route>
@@ -20,6 +21,7 @@ function App() {
 
 
     </Routes>
+    </RemoveContextProvider>
   );
 }
 

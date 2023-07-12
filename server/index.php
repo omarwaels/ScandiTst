@@ -8,16 +8,28 @@ header("Access-Control-Allow-Methods: *");
 // $productData = json_decode( file_get_contents('php://inputs') );
 // echo $productData;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // collect value of input field
+  
   $product = json_decode( file_get_contents('php://input') );
-  if (empty($product)) {
-    echo "product is empty";
-  } else {
+  if(isset($product->type)){
     var_dump($product->type) ;
     $classname=$product->type;
     $product=new $classname($product);
     $product->addProductDb();
+  }else{
+    $delItem = new delItemDb;
+    foreach ($product as $value) {
+      $delItem->setId($value);
+      $delItem->delItem()($value);
+
+    }
   }
+  // collect value of input field
+  // if (empty($product)) {
+  //   echo "product is empty";
+  // } else {
+
+  //   echo "product is empty";
+  // }
 }
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
   // collect value of input field

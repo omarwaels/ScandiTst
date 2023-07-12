@@ -41,6 +41,7 @@ abstract class products {
         return $this->typeID;
      }
     abstract public function addProductDb();
+
 }
 
 ?>
