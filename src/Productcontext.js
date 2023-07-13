@@ -8,7 +8,7 @@ export const RemoveContext = createContext();
 
 
 function RemoveContextProvider({children}){
-
+    const [updateProductState , setState] = useState(0);
     let productsSkuOnDisplay = [] ;
     axios.get("http://localhost/scandiTest/server/").then(function(response){
         let products =response.data;
@@ -20,10 +20,17 @@ function RemoveContextProvider({children}){
     
       let removeProductsArr  = [];
   
-    function deleteFromArr(productSku){
-    
-      const index = productsSkuOnDisplay.indexOf(productSku);
-      productsSkuOnDisplay.splice(index, productSku);
+    function deleteFromArr(allProductSku){
+      for (let i = 0; i < allProductSku.length; i++) {
+        
+        const index = productsSkuOnDisplay.indexOf(allProductSku[i]);
+        productsSkuOnDisplay.splice(index, allProductSku[i]);
+      }
+      if(updateProductState == 0){
+        setState(1);
+      }else{
+        setState(0);
+      }
     
 
 
@@ -41,7 +48,7 @@ function RemoveContextProvider({children}){
     console.log(removeProductsArr);
   }
     return (
-        <RemoveContext.Provider value={{removeProductsArr,productsSkuOnDisplay,handlecheckbutton}}>
+        <RemoveContext.Provider value={{removeProductsArr,productsSkuOnDisplay,handlecheckbutton,deleteFromArr,updateProductState,setState}}>
        {children}
         </RemoveContext.Provider>
     )

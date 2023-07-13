@@ -12,14 +12,20 @@ import { Navigate,useNavigate } from 'react-router-dom';
 function NavBar() {
   const navigate  = useNavigate();
   let {removeProductsArr} = useContext(RemoveContext);
+  let {deleteFromArr} = useContext(RemoveContext);
   const handleDel = (event)=>{
-    console.log(1);
+    
     event.preventDefault();
     if (removeProductsArr.length == 0){
       return
     }
     removeProductsArr = Object.assign({}, removeProductsArr);
-    axios.post("http://localhost/scandiTest/server/",JSON.stringify(removeProductsArr));
+    console.log('yyyyyyyyyyyyyyyyyyyyyyyyy');
+    console.log(removeProductsArr);
+    console.log(JSON.stringify(removeProductsArr));
+    console.log('yyyyyyyyyyyyyyyyyyyyyyyyy');
+    axios.post("http://localhost/scandiTest/server/",removeProductsArr);
+    deleteFromArr(removeProductsArr)
     removeProductsArr= [];
 
   }

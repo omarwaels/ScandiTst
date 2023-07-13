@@ -17,9 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product->addProductDb();
   }else{
     $delItem = new delItemDb;
+    
     foreach ($product as $value) {
+
       $delItem->setId($value);
-      $delItem->delItem()($value);
+      $delItem->delItem();
 
     }
   }

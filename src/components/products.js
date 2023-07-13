@@ -9,7 +9,8 @@ import {RemoveContext} from '../Productcontext';
 function Products() {
   
   let {productsSkuOnDisplay} = useContext(RemoveContext);
-  console.log(productsSkuOnDisplay)
+  let {updateProductState} = useContext(RemoveContext);
+ 
 
   // function handlecheckbutton(productSku){
   //   if(removeProductsArr.includes(productSku)){
@@ -24,12 +25,12 @@ function Products() {
 
     const [products , setProducts] = useState([]);
 
-    useEffect(()=> {getproducts();},[productsSkuOnDisplay]);
+    useEffect(()=> {getproducts() },[updateProductState]);
 
     function getproducts(){
         
         axios.get("http://localhost/scandiTest/server/").then(function(response){
-            console.log(response.data);
+            
             setProducts(response.data);
         });
     }
